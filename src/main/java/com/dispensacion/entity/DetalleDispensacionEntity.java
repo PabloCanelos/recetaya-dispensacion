@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "detalle_dispensaciones")
 @Getter
@@ -17,6 +19,7 @@ public class DetalleDispensacionEntity {
      @Column(name = "id_detalle_dispensacion")
      private Long idDetalleDispensacion;
 
+     @JsonBackReference // Evita referencia circular
      @ManyToOne(fetch = FetchType.LAZY)
      @JoinColumn(name = "id_dispensacion", nullable = false)
      private DispensacionEntity dispensacion;

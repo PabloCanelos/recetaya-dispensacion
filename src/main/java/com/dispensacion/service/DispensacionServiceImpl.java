@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import java.time.LocalDateTime;
+
 @Service
 public class DispensacionServiceImpl implements DispensacionService {
 
@@ -35,8 +37,14 @@ public class DispensacionServiceImpl implements DispensacionService {
     }
 
     @Override
-    public DispensacionEntity crear(DispensacionEntity dispensacion) {
+    public DispensacionEntity crear(
+            DispensacionEntity dispensacion
+    ) {
 
+        // Registra la fecha automáticamente
+        dispensacion.setFechaDispensacion(LocalDateTime.now());
+
+        // Vincula los detalles con la dispensación
         asociarDetalles(dispensacion);
 
         return dispensacionRepository.save(dispensacion);
@@ -59,9 +67,6 @@ public class DispensacionServiceImpl implements DispensacionService {
                             nuevosDatos.getIdFarmaceutico()
                     );
 
-                    dispensacionExistente.setFechaDispensacion(
-                            nuevosDatos.getFechaDispensacion()
-                    );
 
                     dispensacionExistente.setEstado(
                             nuevosDatos.getEstado()
