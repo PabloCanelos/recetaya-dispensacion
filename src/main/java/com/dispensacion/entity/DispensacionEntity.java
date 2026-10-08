@@ -9,6 +9,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "dispensaciones")
 @Getter
@@ -33,10 +35,13 @@ public class DispensacionEntity {
     @Column(name = "estado", nullable = false, length = 30)
     private String estado;
 
+
+    @JsonManagedReference // Incluye detalles en el JSON
     @OneToMany(
             mappedBy = "dispensacion",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+
     private List<DetalleDispensacionEntity> detalles = new ArrayList<>();
 }
