@@ -86,9 +86,25 @@ Para ejecutar el proyecto se requiere:
 El proyecto incluye **Maven Wrapper**, por lo que no es obligatorio
 tener Maven instalado globalmente.
 
+### Verificar versión de Java
+
+Antes de compilar el proyecto, verificar que la consola esté utilizando Java 21:
+
+```powershell
+java -version
+javac -version
+```
+
+Ambos comandos deben indicar una versión **21**.
+
+Si se utiliza una versión anterior, Maven no podrá compilar el proyecto
+configurado para Java 21.
+
 ## Base de datos
 
-Crear una base de datos MySQL vacía:
+Antes de compilar o ejecutar el proyecto, iniciar el servicio MySQL.
+
+Luego crear una base de datos vacía:
 
 ```sql
 CREATE DATABASE recetaya_dispensacion;
@@ -96,6 +112,10 @@ CREATE DATABASE recetaya_dispensacion;
 
 Las tablas son creadas automáticamente por Hibernate a partir de
 las entidades JPA.
+
+> **Importante:** MySQL debe encontrarse iniciado antes de ejecutar
+> `.\mvnw.cmd clean package`, ya que las pruebas de Spring Boot cargan
+> el contexto de la aplicación y validan la conexión con la base de datos.
 
 Tablas generadas:
 
