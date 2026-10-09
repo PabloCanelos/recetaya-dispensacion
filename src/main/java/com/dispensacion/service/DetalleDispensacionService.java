@@ -13,18 +13,6 @@ public interface DetalleDispensacionService {
     // Busca un detalle por ID
     Optional<DetalleDispensacionEntity> buscarPorId(Long id);
 
-    // Busca detalles de una dispensación
+    // Busca los detalles de una dispensación
     List<DetalleDispensacionEntity> buscarPorDispensacion(Long idDispensacion);
-
-    // Crea un nuevo detalle
-    DetalleDispensacionEntity crear(DetalleDispensacionEntity detalle);
-
-    // Actualiza un detalle existente
-    Optional<DetalleDispensacionEntity> actualizar(
-            Long id,
-            DetalleDispensacionEntity detalle
-    );
-
-    // Elimina un detalle
-    boolean eliminar(Long id);
 }
